@@ -35,6 +35,8 @@ $personellist=$sorgu-> fetchAll(PDO::FETCH_OBJ);
             <th scope="col">İsim</th>
             <th scope="col">Soyisim</th>
             <th scope="col">Telefon Numarası</th>
+            <th scope="col">Oluştruma Tarihi</th>
+           
           </tr>
         </thead>
         <tbody>
@@ -47,6 +49,7 @@ $personellist=$sorgu-> fetchAll(PDO::FETCH_OBJ);
 			 	<td><?= $person->name ?></td>
 			 	<td><?= $person->surname ?></td>
 			 	<td><?= $person->phone_number ?></td>
+         <td><?= $person->created_at ?></td>
 			    </tr>
 				 
 			 <?php } ?>
