@@ -1,3 +1,33 @@
+<?php
+
+if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) 
+//kullaniciadi ve sifre tanimli mi kontrol eder eğer boş ise ve çıkış yapılırsa echoyu işleme sokar
+{ 
+  header('WWW-Authenticate: Basic realm="Kullanıcı Girişi"');
+  header('HTTP/1.0 401 Unauthorized');
+  echo 'Giriş Yapmadınız!';
+  exit;
+} 
+else
+  {
+    $kullaniciadi = base64_encode($_SERVER['PHP_AUTH_USER']); 
+    $sifre = base64_encode($_SERVER['PHP_AUTH_PW']);
+    //değişkenin içine base64 olarak kullanıcının girdiği veriyi(kullanıcıadı ve şifre) alır
+
+    if($kullaniciadi != base64_encode('admin') || $sifre != base64_encode('sifre')) 
+    //giriş sağlandığında 13-14. satırdaki kodlarla beraber kullanıcının girdiği verinin eşitliğini kontrol eder  kullnaıcı adı doğru değilse(erişim izni kontrolü) direkt echo yu döndürür doğru ise sonrasında şifreyi de kontrol eder.
+    {
+      header('HTTP/1.0 401 Unauthorized');
+      echo 'Geçersiz kullanıcı adı veya şifre!';
+      exit;
+    }
+  }
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
